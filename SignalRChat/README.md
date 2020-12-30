@@ -119,7 +119,7 @@ code -r .
         event.preventDefault();
     });
     ```
-6. Run the app:
+6. Run the app by executing the follwing command in Visual Studio Code's integrated terminal:
 ``` bash
 dotnet watch run -p SignalRChat.csproj
 ```
