@@ -3,18 +3,18 @@ This application is based on [Tutorial: Get started with ASP.NET Core SignalR](h
 
 The following steps have been executed using Visual Studio Code:
 
-1. Create a web app project:
+1. Create a web app project and open the project in Visual Studio Code using PowerShell or a command shell:
 ``` bash
 dotnet new webapp -o SignalRChat
 cd SignalRChat
 code -r .
 ```
 2. Add the SignalR client library:
-    1. Install LibMan tool:
+    1. Install LibMan tool using the following command in Visual Studio Code's integrated terminal:
     ``` bash
     dotnet tool install -g Microsoft.Web.LibraryManager.Cli
     ```
-    2. Install SignalR client library with LibMan:
+    2. Install SignalR client library with LibMan using the following command in Visual Studio Code's integrated terminal:
     ``` bash
     libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files dist/browser/signalr.js --files dist/browser/signalr.min.js
     ```
@@ -123,3 +123,8 @@ code -r .
 ``` bash
 dotnet watch run -p SignalRChat.csproj
 ```
+7. Open app in at least 2 separate browser tabs/instances by executing the following command in Visual Studio Code's integrated terminal:
+``` bash
+Start https://localhost:5001
+```
+8. Added some explanatory comments to the added/modified code of the project.
