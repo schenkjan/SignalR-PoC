@@ -14,6 +14,8 @@ namespace SignalRChat
 {
     public class Startup
     {
+        readonly string AllowEverything = "AllowEverything";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -24,6 +26,17 @@ namespace SignalRChat
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Configure CORS to let the react app connect via SignalR (it is hosted under a different origin; http://localhost:3000)
+            services.AddCors(options => {
+                options.AddPolicy(name: AllowEverything, builder => {
+                    builder
+                        .AllowAnyHeader() // necessary to establish SignalR connection from react app
+                        .AllowCredentials() // necessary to establish SignalR connection from react app
+                        //.AllowAnyOrigin(); // does not work together with .AllowCredentials(), URLs need to be listed explicitly
+                        .WithOrigins("http://localhost:3000"); // allow the react app to do CORS
+                });
+            });
+
             services.AddRazorPages();
             services.AddSignalR(); // add SignalR as a service to the dependency injection container
         }
@@ -46,6 +59,9 @@ namespace SignalRChat
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            // Enable CORS to let the react app connect via SignalR (it is hosted under a different origin; http://localhost:3000)
+            app.UseCors(AllowEverything);
 
             app.UseAuthorization();
 
