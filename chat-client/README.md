@@ -1,6 +1,34 @@
-# Getting Started with Create React App
+# SignalRChat - React Client
+This project contains a React-based client for the *SignalRChat*. It uses *SignalR* to send and receive messages to and from other chat clients.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Running the Application
+1. Make sure the *SignalRChat* backend application is already running.
+2. Execute `yarn start`
+    1. Runs the app in the development mode.
+    2. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+# Developer Notes
+## Reproduction Steps
+1. Create new React app from typescript template (which results in the current folder structure and also this *README.md* file):
+    ``` bash
+    npx create-react-app chat-client --template typescript
+    ```
+2. Update the UI to resemble the chat app.
+    1. Create *Chat* component.
+    2. Create *ChatMessage* component and use it in the *Chat* component.
+    3. Use of the *Chat* component in *App.tsx*.
+3. Add SignalR to the React app:
+    ``` bash
+    yarn add @microsoft/signalr
+    ```
+4. Create the connection to the *SignalRChat* backend (according to [Integrating SignalR with React TypeScript and ASP.NET Core](https://www.roundthecode.com/dotnet/signalr/integrating-signalr-with-react-typescript-and-asp-net-core)):
+    1. Create a connection to the SignalR hub in the constuctor of the *Chat* component.
+    2. Register the *ReceiveMessage" event of the SignalR hub connection as soon as the component is mounted, i.e. in the *componentDidMount()* method.
+    3. Start the SignalR connection in the *componentDidMount()* method.
+    4. Implement the *sendMessage()* method and register it in the *onClick* event handler of the *Send Message* button.
+        1. Invoke a *SendMessage* event to send the message via the SignalR connection.
 
 ## Available Scripts
 
