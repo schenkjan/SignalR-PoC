@@ -2,6 +2,12 @@
 A proof-of-concept with SignalR for the CAS HTML5.
 It aims to proof that SignalR can be used to satisfy the requirements for the group project **Marble Collector** that is part of the CAS HTML5.
 
+It consists of the following components:
+- An ASP.NET Core based backend that provides a SignalR hub to send and receive chat messages.
+- An ASP.NET Core based client to send and receive chat messages over the SignalR hub of the backend.
+- A React based client to send and receive chat messages over the SignalR hub of the backend.
+
+
 ## Starting the Application(s)
 1. Start the *SignalRChat* backend application (see [README.md](/SignalRChat/README.md) for details).
 2. Start the *SignalRChat* client application  (see [README.md](/SignalRChat/README.md) for details).
