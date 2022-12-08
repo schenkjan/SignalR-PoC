@@ -36,7 +36,7 @@ export class Chat extends Component<{}, ChatState>  {
     }
 
     componentDidMount() {
-        // Register an event listener for new received messages
+        // Register an event listener for new received messages.
         this.state.connection.on("ReceiveMessage", (user: string, message: string) => {
             var msg = message.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
             var encodedMsg = user + " says: " + msg;
@@ -45,7 +45,12 @@ export class Chat extends Component<{}, ChatState>  {
             this.setState({ messages: this.state.messages }); // trigger rendering of new message
         });
 
-        // Start the connection to the SignalR hub
+        // Avoid to start the connection if it is not in a disconnected state.
+        if (this.state.connection.state !== signalR.HubConnectionState.Disconnected) {
+            return;
+        }
+
+        // Start the connection to the SignalR hub if it's not already established.
         this.state.connection.start()
             .then(() =>  {
                 console.log('Connection established.');
@@ -55,6 +60,11 @@ export class Chat extends Component<{}, ChatState>  {
                 return console.error(err.toString());
             }
         );
+    }
+
+    componentWillUnmount(): void {
+        // Cleanup the registered event listener for new received messages.
+        this.state.connection.off("ReceiveMessage");
     }
 
     updateUser(event: React.ChangeEvent<HTMLInputElement>): void {
