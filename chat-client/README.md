@@ -5,7 +5,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Running the Application
 1. Make sure the *SignalRChat* backend application is already running.
-2. Execute `yarn start`
+2. Execute `yarn install`.
+    1. Installs all the necessary dependencies (npm packages).
+3. Execute `yarn start`.
     1. Runs the app in the development mode.
     2. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
